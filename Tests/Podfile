@@ -1,0 +1,5 @@
+platform :osx, '10.9'
+workspace '../NSAttributedString+CCLFormat'
+
+pod 'NSAttributedString+CCLFormat', :path => '../'
+
