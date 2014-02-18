@@ -1,7 +1,7 @@
 NSAttributedString+CCLFormat
 ============================
 
-[![Build Status](https://travis-ci.org/cocodelabs/NSAttributedString+CCLFormat.png?branch=master)](https://travis-ci.org/cocodelabs/NSAttributedString+CCLFormat)
+[![Build Status](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat.png?branch=master)](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat)
 
 An extension to NSAttributedString for creating attributed strings by using a
 given format string as a template into which the remaining argument values are
@@ -45,8 +45,6 @@ Here's an example podfile that installs NSAttributedString+CCLFormat.
 ### Podfile
 
 ```ruby
-platform :ios, '5.0'
-
 pod 'NSAttributedString+CCLFormat'
 ```
 
