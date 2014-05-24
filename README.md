@@ -18,21 +18,23 @@ substituted. This is helpful for using in conjunction with internationalisation.
 ## Usage
 
 ```objective-c
-NSAttributedString *blue = [[NSAttributedString alloc] initWithString:@"Blue" attributes:@{
+NSAttributedString *blue, *green, *never, *result;
+
+blue = [[NSAttributedString alloc] initWithString:@"Blue" attributes:@{
     NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0f],
     NSForegroundColorAttributeName: [UIColor blueColor],
 }];
 
-NSAttributedString *green = [[NSAttributedString alloc] initWithString:@"Green" attributes:@{
+green = [[NSAttributedString alloc] initWithString:@"Green" attributes:@{
     NSFontAttributeName: [UIFont boldSystemFontOfSize:16.0f],
     NSForegroundColorAttributeName: [UIColor greenColor],
 }];
 
-NSAttributedString *never = [[NSAttributedString alloc] initWithString:@"never" attributes:@{
+never = [[NSAttributedString alloc] initWithString:@"never" attributes:@{
     NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle),
 }];
 
-NSAttributedString *attributedString = [NSAttributedString attributedStringWithFormat:@"%@ and %@ must %@ be seen", blue, green, never];
+result = [NSAttributedString attributedStringWithFormat:@"%@ and %@ must %@ be seen", blue, green, never];
 ```
 
 ## Installation
