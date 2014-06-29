@@ -2,8 +2,10 @@ language: objective-c
 before_install:
   - gem install cocoapods
   - gem install xcpretty
+  - gem install slather
   - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
 script: "make"
+after_success: slather
 notifications:
   irc: "chat.freenode.net#cocode"
 
