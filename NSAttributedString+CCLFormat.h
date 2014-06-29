@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/** Attributed string extension for creating attributed strings from a format string. */
 @interface NSAttributedString (CCLFormat)
 
 /** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
