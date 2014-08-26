@@ -5,12 +5,22 @@
 //  Created by Kyle Fuller on 06/11/2012.
 //  Copyright (c) 2012-2014 Cocode. All rights reserved.
 //
+//  Modified by John Swan 2014
+//  to take an attrDict for the base string
+//
+
 
 #import "NSAttributedString+CCLFormat.h"
 
 @implementation NSAttributedString (CCLFormat)
 
-+ (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... {
++ (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    va_list args;
+    va_start(args, format);
+    return [self attributedStringWithAttributes:nil andFormat:format, args];
+}
+
++ (NSAttributedString *)attributedStringWithAttributes:(NSDictionary *)attrDict andFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3) {
     NSMutableArray *attributes = [NSMutableArray array];
 
     va_list args;
@@ -25,7 +35,13 @@
     }
     va_end(args);
 
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:format];
+    NSMutableAttributedString *attributedString;
+    if (attrDict) {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:format attributes:attrDict];
+    } else {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:format];
+    }
+
     [attributedString beginEditing];
 
     NSRange range = [format rangeOfString:@"%@" options:NSBackwardsSearch];
