@@ -1,4 +1,6 @@
 coverage_service: coveralls
 xcodeproj: Tests/NSAttributedString+CCLFormat.xcodeproj
+source_directory: ./
 ignore:
-- Tests/Pods/*
+ - Tests/*
+ - "*/Pods/*"
