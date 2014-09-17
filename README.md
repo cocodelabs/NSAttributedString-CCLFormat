@@ -1,7 +1,7 @@
 NSAttributedString+CCLFormat
 ============================
 
-[![Build Status](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat.png?branch=master)](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat)
+[![Build Status](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat.svg?branch=master)](https://travis-ci.org/cocodelabs/NSAttributedString-CCLFormat)
 [![Coverage Status](https://img.shields.io/coveralls/cocodelabs/NSAttributedString-CCLFormat.svg)](https://coveralls.io/r/cocodelabs/NSAttributedString-CCLFormat)
 
 An extension to NSAttributedString for creating attributed strings by using a
