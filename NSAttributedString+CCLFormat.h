@@ -16,7 +16,9 @@
  @param ... A comma-separated list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
+
 + (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
++ (NSAttributedString *)attributedStringWithAttributes:(NSDictionary *)attrDict andFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3);
 
 @end
 
