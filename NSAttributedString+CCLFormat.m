@@ -20,9 +20,8 @@
 }
 
 + (instancetype)attributedStringWithFormat:(NSString *)format
-                                 arguments:(va_list)args
+                                 arguments:(va_list)args {
 
-+ (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... {
     NSMutableArray *attributes = [NSMutableArray array];
 
     NSString *string = [format stringByReplacingOccurrencesOfString:@"%@" withString:@""];
