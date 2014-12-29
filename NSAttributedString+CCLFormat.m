@@ -10,11 +10,19 @@
 
 @implementation NSAttributedString (CCLFormat)
 
-+ (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... {
-    NSMutableArray *attributes = [NSMutableArray array];
-
++ (instancetype)attributedStringWithFormat:( NSString* )format, ...
+{
     va_list args;
     va_start(args, format);
+    NSAttributedString* result = [self attributedStringWithFormat: format arguments: args];
+    va_end(args);
+    return result;
+}
+
++ (instancetype)attributedStringWithFormat:(NSString *)format
+                                 arguments:(va_list)args {
+
+    NSMutableArray *attributes = [NSMutableArray array];
 
     NSString *string = [format stringByReplacingOccurrencesOfString:@"%@" withString:@""];
     NSUInteger count = ([format length] - [string length]) / [@"%@" length];
@@ -23,7 +31,6 @@
         id argument = va_arg(args, id);
         [attributes addObject:argument];
     }
-    va_end(args);
 
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:format];
     [attributedString beginEditing];
@@ -44,7 +51,7 @@
     }
 
     [attributedString endEditing];
-    return [attributedString copy];
+    return [[[self class] alloc] initWithAttributedString: attributedString];
 }
 
 @end
