@@ -10,24 +10,36 @@
 
 @implementation NSAttributedString (CCLFormat)
 
-+ (instancetype)attributedStringWithFormat:( NSString* )format, ...
-{
++ (instancetype)attributedStringWithFormat:(NSString *)format, ... {
     va_list args;
     va_start(args, format);
-    NSAttributedString* result = [self attributedStringWithFormat: format arguments: args];
+    NSAttributedString *result = [[self alloc] attributedStringWithFormat:format arguments:args];
     va_end(args);
+
     return result;
 }
 
-+ (instancetype)attributedStringWithFormat:(NSString *)format
-                                 arguments:(va_list)args {
++ (instancetype)attributedStringWithFormat:(NSString *)format arguments:(va_list)arguments {
+    return [[[self class] alloc] initWithFormat:format arguments:arguments];
+}
 
+- (instancetype)initWithFormat:(NSString *)format, ... {
+    va_list args;
+    va_start(args, format);
+    self = [self initWithFormat:format arguments:args];
+    va_end(args);
+
+    return self;
+}
+
+
+- (instancetype)initWithFormat:(NSString *)format arguments:(va_list)args {
     NSMutableArray *attributes = [NSMutableArray array];
 
     NSString *string = [format stringByReplacingOccurrencesOfString:@"%@" withString:@""];
     NSUInteger count = ([format length] - [string length]) / [@"%@" length];
 
-    for (NSUInteger index = 0; index < count; index++) {
+    for (NSUInteger index = 0; index < count; ++index) {
         id argument = va_arg(args, id);
         [attributes addObject:argument];
     }
@@ -51,7 +63,8 @@
     }
 
     [attributedString endEditing];
-    return [[[self class] alloc] initWithAttributedString: attributedString];
+
+    return [self initWithAttributedString:attributedString];
 }
 
 @end
