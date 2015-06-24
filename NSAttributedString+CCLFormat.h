@@ -20,9 +20,24 @@
 
 /** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
  @param format A format string. This value must not be nil.
- @param args list of arguments to substitute into format.
+ @param arguments list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
-+ (instancetype)attributedStringWithFormat:(NSString *)format arguments:(va_list)args NS_FORMAT_FUNCTION(1,0);
++ (instancetype)attributedStringWithFormat:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(1,0);
+
+/** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
+ @param format A format string. This value must not be nil.
+ @param ... A comma-separated list of arguments to substitute into format.
+ @return An attributed string created by using format as a template into which the remaining argument values are substituted.
+ */
+- (instancetype)initWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
+
+/** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
+ @param format A format string. This value must not be nil.
+ @param arguments list of arguments to substitute into format.
+ @return An attributed string created by using format as a template into which the remaining argument values are substituted.
+ */
+- (instancetype)initWithFormat:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(1,0);
 
 @end
+
