@@ -13,14 +13,14 @@
 + (instancetype)attributedStringWithFormat:(NSString *)format, ... {
     va_list args;
     va_start(args, format);
-    NSAttributedString *result = [[self alloc] attributedStringWithFormat:format arguments:args];
+    NSAttributedString *result = [[self alloc] initWithFormat:format arguments:args];
     va_end(args);
 
     return result;
 }
 
 + (instancetype)attributedStringWithFormat:(NSString *)format arguments:(va_list)arguments {
-    return [[[self class] alloc] initWithFormat:format arguments:arguments];
+    return [[self alloc] initWithFormat:format arguments:arguments];
 }
 
 - (instancetype)initWithFormat:(NSString *)format, ... {
@@ -31,7 +31,6 @@
 
     return self;
 }
-
 
 - (instancetype)initWithFormat:(NSString *)format arguments:(va_list)args {
     NSMutableArray *attributes = [NSMutableArray array];
