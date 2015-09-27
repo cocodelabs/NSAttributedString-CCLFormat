@@ -68,5 +68,14 @@
     XCTAssertEqualObjects(attributedString, fixtureAttributedString, "");
 }
 
-@end
+- (void)testSubstituteAttributedStringPerformance {
+    NSDictionary *attributes = @{ NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle) };
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attributes];
 
+    [self measureBlock:^{
+        NSAttributedString *formattedAttributedString = [NSAttributedString attributedStringWithFormat:@"%@", attributedString];
+        XCTAssertEqualObjects(formattedAttributedString, attributedString);
+    }];
+}
+
+@end
