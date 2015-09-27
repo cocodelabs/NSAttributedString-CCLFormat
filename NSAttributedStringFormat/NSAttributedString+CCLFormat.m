@@ -1,11 +1,3 @@
-//
-//  NSAttributedString+CCLFormat.m
-//  Cocode
-//
-//  Created by Kyle Fuller on 06/11/2012.
-//  Copyright (c) 2012-2014 Cocode. All rights reserved.
-//
-
 #import "NSAttributedString+CCLFormat.h"
 
 #pragma mark - Format String Parsing

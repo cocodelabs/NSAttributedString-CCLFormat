@@ -33,6 +33,9 @@
 		279E6DD81BB8857A0043DDC9 /* NSAttributedString+CCLFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCLFormatTests.m"; sourceTree = "<group>"; };
 		279E6DDA1BB885AF0043DDC9 /* NSAttributedString+CCLFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+CCLFormat.m"; sourceTree = "<group>"; };
 		279E6DDC1BB885BF0043DDC9 /* NSAttributedString+CCLFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CCLFormat.h"; sourceTree = "<group>"; };
+		279E6DE11BB8A4CB0043DDC9 /* UniversalFramework_Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Base.xcconfig; sourceTree = "<group>"; };
+		279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Framework.xcconfig; sourceTree = "<group>"; };
+		279E6DE31BB8A4CB0043DDC9 /* UniversalFramework_Test.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = UniversalFramework_Test.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 		279E6DB41BB8855B0043DDC9 = {
 			isa = PBXGroup;
 			children = (
+				279E6DDE1BB8A4CB0043DDC9 /* xcconfigs */,
 				279E6DC01BB8855B0043DDC9 /* NSAttributedStringFormat */,
 				279E6DCC1BB8855B0043DDC9 /* NSAttributedStringFormatTests */,
 				279E6DBF1BB8855B0043DDC9 /* Products */,
@@ -92,6 +96,16 @@
 				279E6DCF1BB8855B0043DDC9 /* Info.plist */,
 			);
 			path = NSAttributedStringFormatTests;
+			sourceTree = "<group>";
+		};
+		279E6DDE1BB8A4CB0043DDC9 /* xcconfigs */ = {
+			isa = PBXGroup;
+			children = (
+				279E6DE11BB8A4CB0043DDC9 /* UniversalFramework_Base.xcconfig */,
+				279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */,
+				279E6DE31BB8A4CB0043DDC9 /* UniversalFramework_Test.xcconfig */,
+			);
+			path = xcconfigs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +324,7 @@
 		};
 		279E6DD31BB8855B0043DDC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -328,6 +343,7 @@
 		};
 		279E6DD41BB8855B0043DDC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -346,6 +362,7 @@
 		};
 		279E6DD61BB8855B0043DDC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 279E6DE31BB8A4CB0043DDC9 /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NSAttributedStringFormatTests/Info.plist;
@@ -357,6 +374,7 @@
 		};
 		279E6DD71BB8855B0043DDC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 279E6DE31BB8A4CB0043DDC9 /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = NSAttributedStringFormatTests/Info.plist;
@@ -385,6 +403,7 @@
 				279E6DD41BB8855B0043DDC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		279E6DD51BB8855B0043DDC9 /* Build configuration list for PBXNativeTarget "NSAttributedStringFormatTests" */ = {
 			isa = XCConfigurationList;
@@ -393,6 +412,7 @@
 				279E6DD71BB8855B0043DDC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

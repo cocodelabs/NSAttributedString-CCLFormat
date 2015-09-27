@@ -13,6 +13,7 @@ Pod::Spec.new do |spec|
 
   spec.osx.deployment_target = '10.6'
   spec.ios.deployment_target = '4.3'
+  spec.watchos.deployment_target = '2.0'
 
   spec.source_files = 'NSAttributedStringFormat/NSAttributedString+CCLFormat.{h,m}'
 end
