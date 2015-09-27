@@ -14,6 +14,6 @@ Pod::Spec.new do |spec|
   spec.osx.deployment_target = '10.6'
   spec.ios.deployment_target = '4.3'
 
-  spec.source_files = 'NSAttributedString+CCLFormat.{h,m}'
+  spec.source_files = 'NSAttributedStringFormat/NSAttributedString+CCLFormat.{h,m}'
 end
 

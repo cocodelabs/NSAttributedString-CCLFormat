@@ -1,11 +1,5 @@
 language: objective-c
-before_install:
-  - gem install cocoapods
-  - gem install xcpretty
-  - gem install slather
-  - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
-script: "make"
-after_success: slather
-notifications:
-  irc: "chat.freenode.net#cocode"
+script:
+  - set -o pipefail &&  xcodebuild -project NSAttributedStringFormat.xcodeproj -scheme NSAttributedStringFormat test -sdk macosx | xcpretty -c
+  - pod lib lint
 

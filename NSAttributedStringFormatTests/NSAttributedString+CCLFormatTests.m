@@ -1,14 +1,6 @@
-//
-//  NSAttributedString+CCLFormatTests.m
-//  Cocode
-//
-//  Created by Kyle Fuller on 06/11/2012.
-//  Copyright (c) 2012-2014 Cocode. All rights reserved.
-//
-
-#import <XCTest/XCTest.h>
-#import <AppKit/AppKit.h>
-#import <NSAttributedString+CCLFormat.h>
+@import XCTest;
+@import Foundation;
+@import NSAttributedStringFormat;
 
 
 @interface NSAttributedStringTests : XCTestCase

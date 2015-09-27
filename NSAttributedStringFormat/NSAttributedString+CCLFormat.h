@@ -1,12 +1,4 @@
-//
-//  NSAttributedString+CCLFormat.h
-//  Cocode
-//
-//  Created by Kyle Fuller on 06/11/2012.
-//  Copyright (c) 2012-2014 Cocode. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /** Attributed string extension for creating attributed strings from a format string. */
 @interface NSAttributedString (CCLFormat)
@@ -40,4 +32,3 @@
 - (instancetype)initWithFormat:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(1,0);
 
 @end
-

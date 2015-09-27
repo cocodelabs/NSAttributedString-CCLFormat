@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:NSAttributedString+CCLFormat.xcodeproj">
+      location = "self:NSAttributedStringFormat.xcodeproj">
    </FileRef>
 </Workspace>
