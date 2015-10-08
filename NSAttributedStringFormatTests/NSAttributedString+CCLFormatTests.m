@@ -141,6 +141,58 @@
     XCTAssertEqualObjects([attributedString string], @"1 2 1", "");
 }
 
+- (void)testFormatStringCanHaveAttributes {
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttributes:@{
+                                            NSForegroundColorAttributeName: [NSColor blueColor]
+                                            } format:@"test %@", @"test"];
+    NSAttributedString *formattedAttributedString = [[NSAttributedString alloc] initWithString:@"test test"
+                    attributes:@{NSForegroundColorAttributeName: [NSColor blueColor]}];
+    XCTAssertEqualObjects(formattedAttributedString, attributedString);
+}
+
+- (void)testArgumentAttributesOverrideBaseAttributes {
+    NSAttributedString *attributedArg = [[NSAttributedString alloc] initWithString:@"test"
+                            attributes:@{NSForegroundColorAttributeName: [NSColor greenColor]}];
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttributes:@{
+                                NSForegroundColorAttributeName: [NSColor blueColor]
+                                } format:@"test %@", attributedArg];
+    NSMutableAttributedString *formattedAttributedString = [[NSMutableAttributedString alloc]
+                                initWithString:@"test "
+                                    attributes:@{NSForegroundColorAttributeName: [NSColor blueColor]}];
+    [formattedAttributedString appendAttributedString:attributedArg];
+    XCTAssertEqualObjects(formattedAttributedString, attributedString);
+}
+
+- (void)testMissingAttributeInAttributedArgumentUsesBaseAttribute {
+    NSAttributedString *attributedArg = [[NSAttributedString alloc] initWithString:@"test"
+                        attributes:@{NSForegroundColorAttributeName: [NSColor greenColor]}];
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttributes:@{
+                        NSForegroundColorAttributeName: [NSColor blueColor],
+                        NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0f]
+                        } format:@"test %@", attributedArg];
+    NSMutableAttributedString *formattedAttributedString = [[NSMutableAttributedString alloc]
+                                    initWithString:@"test " attributes:@{
+                            NSForegroundColorAttributeName: [NSColor blueColor],
+                            NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0f]
+                            }];
+    [formattedAttributedString appendAttributedString:attributedArg];
+    [formattedAttributedString addAttributes:@{
+                                               NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0f]
+                                               }
+                                       range:(NSRange) {5,4}];
+    XCTAssertEqualObjects(formattedAttributedString, attributedString);
+}
+
+- (void)testNonAttributedArgumentUsesBaseAttributes {
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttributes:@{
+                     NSForegroundColorAttributeName: [NSColor blueColor]
+                     } format:@"test %@", @"test"];
+    NSMutableAttributedString *formattedAttributedString = [[NSMutableAttributedString alloc]
+                                initWithString:@"test test" attributes:@{
+                                NSForegroundColorAttributeName: [NSColor blueColor]}];
+    XCTAssertEqualObjects(formattedAttributedString, attributedString);
+}
+
 - (void)testSubstituteAttributedStringPerformance {
     NSDictionary *attributes = @{ NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle) };
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attributes];

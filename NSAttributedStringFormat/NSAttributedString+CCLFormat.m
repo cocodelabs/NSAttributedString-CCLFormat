@@ -156,6 +156,13 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
         id arg = [attributeStrings objectAtIndex:parseResult.index];
 
         if ([arg isKindOfClass:[NSAttributedString class]]) {
+            if (attributes) {
+                NSMutableAttributedString *argCopy = [arg mutableCopy];
+                NSMutableDictionary *newAttributes = [attributes mutableCopy];
+                [newAttributes addEntriesFromDictionary:[arg attributesAtIndex:0 effectiveRange:NULL]];
+                [argCopy setAttributes:newAttributes range:(NSRange){0, argCopy.length}];
+                arg = argCopy;
+            }
             [attributedString replaceCharactersInRange:parseResult.range withAttributedString:arg];
         } else {
             [attributedString replaceCharactersInRange:parseResult.range withString:[arg description]];
