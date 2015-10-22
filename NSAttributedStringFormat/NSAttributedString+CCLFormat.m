@@ -157,10 +157,17 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
 
         if ([arg isKindOfClass:[NSAttributedString class]]) {
             if (attributes) {
+                //Copy to main string attributes over the argument copy
                 NSMutableAttributedString *argCopy = [arg mutableCopy];
-                NSMutableDictionary *newAttributes = [attributes mutableCopy];
-                [newAttributes addEntriesFromDictionary:[arg attributesAtIndex:0 effectiveRange:NULL]];
-                [argCopy setAttributes:newAttributes range:(NSRange){0, argCopy.length}];
+                [argCopy setAttributes:attributes range:(NSRange){0, argCopy.length}];
+                
+                //Re-apply the original attributes to keep orignal styling where necessary
+                //This handles cases where original styling doesn't cover the whole argument
+                //For example, repeat calls to attributedStringWithFormat: with styled arguments
+                [arg enumerateAttributesInRange:(NSRange){0, [arg length]} options:0 usingBlock:
+                 ^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+                     [argCopy addAttributes:attrs range:range];
+                 }];
                 arg = argCopy;
             }
             [attributedString replaceCharactersInRange:parseResult.range withAttributedString:arg];

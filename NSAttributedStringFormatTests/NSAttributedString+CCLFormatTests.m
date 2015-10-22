@@ -193,6 +193,29 @@
     XCTAssertEqualObjects(formattedAttributedString, attributedString);
 }
 
+- (void)testAttributedArgumentWithComplexAttributesKeepsAttributes {
+    NSDictionary *boldBlueAttrs = @{ NSFontAttributeName: [NSFont boldSystemFontOfSize:16.0f],
+                                     NSForegroundColorAttributeName: [NSColor blueColor]};
+    NSDictionary *redAttrs = @{NSForegroundColorAttributeName: [NSColor redColor]};
+    NSDictionary *rootAttributes = @{NSForegroundColorAttributeName: [NSColor greenColor],
+                                     NSFontAttributeName: [NSFont systemFontOfSize:14.0f]};
+    
+    NSAttributedString *attributedArg = [NSAttributedString attributedStringWithAttributes:redAttrs
+                                                                                    format:@"red %@ red",
+                                         [[NSAttributedString alloc] initWithString:@"bold blue"
+                                                                         attributes:boldBlueAttrs]];
+
+    NSAttributedString *attributedString = [NSAttributedString attributedStringWithAttributes:rootAttributes
+                                                                    format:@"test %@", attributedArg];
+    NSMutableAttributedString *formattedAttributedString = [[NSMutableAttributedString alloc]
+                                                            initWithString:@"test red bold blue red"
+                                                            attributes:rootAttributes];
+    [formattedAttributedString setAttributes:redAttrs range:(NSRange){5, 17}];
+    [formattedAttributedString setAttributes:boldBlueAttrs range:(NSRange){9, 9}];
+
+    XCTAssertEqualObjects(formattedAttributedString, attributedString);
+}
+
 - (void)testSubstituteAttributedStringPerformance {
     NSDictionary *attributes = @{ NSStrikethroughStyleAttributeName: @(NSUnderlineStyleSingle) };
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:@"Hi" attributes:attributes];
