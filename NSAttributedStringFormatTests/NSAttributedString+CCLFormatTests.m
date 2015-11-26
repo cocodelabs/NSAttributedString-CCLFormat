@@ -210,7 +210,7 @@
     NSMutableAttributedString *formattedAttributedString = [[NSMutableAttributedString alloc]
                                                             initWithString:@"test red bold blue red"
                                                             attributes:rootAttributes];
-    [formattedAttributedString setAttributes:redAttrs range:(NSRange){5, 17}];
+    [formattedAttributedString addAttributes:redAttrs range:(NSRange){5, 17}];
     [formattedAttributedString setAttributes:boldBlueAttrs range:(NSRange){9, 9}];
 
     XCTAssertEqualObjects(formattedAttributedString, attributedString);
