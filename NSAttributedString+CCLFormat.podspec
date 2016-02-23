@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = 'NSAttributedString+CCLFormat'
-  spec.version = '1.1.1'
+  spec.version = '1.2.0'
   spec.license = 'BSD'
   spec.summary = 'Attributed string extension for creating attributed strings from a format string.'
   spec.description = 'Attributed string extension for creating attributed strings by using a given format as a template into which the remaining argument values are substitued.'
