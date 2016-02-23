@@ -91,8 +91,21 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
     return result;
 }
 
++ (instancetype)attributedStringWithAttributes:(NSDictionary *)attributes format:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3) {
+    va_list args;
+    va_start(args, format);
+    NSAttributedString *result = [[self alloc] initWithAttributes:attributes format:format arguments:args];
+    va_end(args);
+
+    return result;
+}
+
 + (instancetype)attributedStringWithFormat:(NSString *)format arguments:(va_list)arguments {
     return [[self alloc] initWithFormat:format arguments:arguments];
+}
+
++ (instancetype)attributedStringWithAttributes:(NSDictionary *)attributes format:(NSString *)format arguments:(va_list)arguments {
+    return [[self alloc] initWithAttributes:attributes format:format arguments:arguments];
 }
 
 - (instancetype)initWithFormat:(NSString *)format, ... {
@@ -104,8 +117,27 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
     return self;
 }
 
-- (instancetype)initWithFormat:(NSString *)format arguments:(va_list)args {
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:format];
+- (instancetype)initWithAttributes:(NSDictionary *)attributes format:(NSString *)format, ... {
+    va_list args;
+    va_start(args, format);
+    self = [self initWithAttributes:attributes format:format arguments:args];
+    va_end(args);
+
+    return self;
+}
+
+- (instancetype)initWithFormat:(NSString *)format arguments:(va_list)arguments {
+    return [self initWithAttributes:nil format:format arguments:arguments];
+}
+
+- (instancetype)initWithAttributes:(NSDictionary *)attributes format:(NSString *)format arguments:(va_list)arguments {
+    NSMutableAttributedString *attributedString;
+    if (attributes) {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:format attributes:attributes];
+    } else {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:format];
+    }
+
     [attributedString beginEditing];
 
     NSUInteger maxPosition;
@@ -114,16 +146,30 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
         return lhs.range.location < rhs.range.location;
     }];
 
-    NSMutableArray *attributes = [NSMutableArray array];
+    NSMutableArray *attributeStrings = [NSMutableArray array];
     for (NSUInteger index = 0; index < maxPosition; ++index) {
-        id argument = va_arg(args, id);
-        [attributes addObject:argument];
+        id argument = va_arg(arguments, id);
+        [attributeStrings addObject:argument];
     }
 
     for (CCLFormatParseResult *parseResult in parseResults) {
-        id arg = [attributes objectAtIndex:parseResult.index];
+        id arg = [attributeStrings objectAtIndex:parseResult.index];
 
         if ([arg isKindOfClass:[NSAttributedString class]]) {
+            if (attributes) {
+                //Copy to main string attributes over the argument copy
+                NSMutableAttributedString *argCopy = [arg mutableCopy];
+                [argCopy setAttributes:attributes range:(NSRange){0, argCopy.length}];
+                
+                //Re-apply the original attributes to keep orignal styling where necessary
+                //This handles cases where original styling doesn't cover the whole argument
+                //For example, repeat calls to attributedStringWithFormat: with styled arguments
+                [arg enumerateAttributesInRange:(NSRange){0, [arg length]} options:0 usingBlock:
+                 ^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+                     [argCopy addAttributes:attrs range:range];
+                 }];
+                arg = argCopy;
+            }
             [attributedString replaceCharactersInRange:parseResult.range withAttributedString:arg];
         } else {
             [attributedString replaceCharactersInRange:parseResult.range withString:[arg description]];
@@ -134,5 +180,6 @@ NSArray *CCLFormatStringParser(NSString *format, NSUInteger *maxPosition) {
 
     return [self initWithAttributedString:attributedString];
 }
+
 
 @end
