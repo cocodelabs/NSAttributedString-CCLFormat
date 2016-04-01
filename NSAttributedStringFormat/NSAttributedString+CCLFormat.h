@@ -1,8 +1,4 @@
-#if __has_include("NSAttributedString+CCLFormat-umbrella.h")
-@import Foundation; // dynamic framework
-#else
 #import <Foundation/Foundation.h>
-#endif
 
 /** Attributed string extension for creating attributed strings from a format string. */
 @interface NSAttributedString (CCLFormat)
