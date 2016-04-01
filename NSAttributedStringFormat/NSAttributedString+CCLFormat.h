@@ -1,4 +1,4 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 /** Attributed string extension for creating attributed strings from a format string. */
 @interface NSAttributedString (CCLFormat)
