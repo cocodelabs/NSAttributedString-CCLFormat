@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		279E6DC21BB8855B0043DDC9 /* NSAttributedStringFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E6DC11BB8855B0043DDC9 /* NSAttributedStringFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		279E6DC91BB8855B0043DDC9 /* NSAttributedStringFormat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279E6DBE1BB8855B0043DDC9 /* NSAttributedStringFormat.framework */; settings = {ASSET_TAGS = (); }; };
-		279E6DD91BB8857A0043DDC9 /* NSAttributedString+CCLFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 279E6DD81BB8857A0043DDC9 /* NSAttributedString+CCLFormatTests.m */; settings = {ASSET_TAGS = (); }; };
-		279E6DDB1BB885AF0043DDC9 /* NSAttributedString+CCLFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 279E6DDA1BB885AF0043DDC9 /* NSAttributedString+CCLFormat.m */; settings = {ASSET_TAGS = (); }; };
+		279E6DC91BB8855B0043DDC9 /* NSAttributedStringFormat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 279E6DBE1BB8855B0043DDC9 /* NSAttributedStringFormat.framework */; };
+		279E6DD91BB8857A0043DDC9 /* NSAttributedString+CCLFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 279E6DD81BB8857A0043DDC9 /* NSAttributedString+CCLFormatTests.m */; };
+		279E6DDB1BB885AF0043DDC9 /* NSAttributedString+CCLFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 279E6DDA1BB885AF0043DDC9 /* NSAttributedString+CCLFormat.m */; };
 		279E6DDD1BB885BF0043DDC9 /* NSAttributedString+CCLFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 279E6DDC1BB885BF0043DDC9 /* NSAttributedString+CCLFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -165,11 +165,12 @@
 		279E6DB51BB8855B0043DDC9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Cocode;
 				TargetAttributes = {
 					279E6DBD1BB8855B0043DDC9 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0830;
 					};
 					279E6DC71BB8855B0043DDC9 = {
 						CreatedOnToolsVersion = 7.0;
@@ -252,8 +253,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -297,8 +300,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -326,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -338,6 +344,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocode.NSAttributedStringFormat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -345,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 279E6DE21BB8A4CB0043DDC9 /* UniversalFramework_Framework.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -357,6 +366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocode.NSAttributedStringFormat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
