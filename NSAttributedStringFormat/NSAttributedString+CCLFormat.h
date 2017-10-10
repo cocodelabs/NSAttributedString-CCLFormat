@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /** Attributed string extension for creating attributed strings from a format string. */
 @interface NSAttributedString (CCLFormat)
 
@@ -16,7 +18,7 @@
  @param arguments list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
-+ (instancetype)attributedStringWithAttributes:(NSDictionary *)attributes format:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3);
++ (instancetype)attributedStringWithAttributes:(nullable id)attributes format:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3);
 
 /** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
  @param format A format string. This value must not be nil.
@@ -31,7 +33,7 @@
  @param arguments list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
-+ (instancetype)attributedStringWithAttributes:(NSDictionary *)attributes format:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(2,0);
++ (instancetype)attributedStringWithAttributes:(nullable id)attributes format:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(2,0);
 
 /** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
  @param format A format string. This value must not be nil.
@@ -46,7 +48,7 @@
  @param ... A comma-separated list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
-- (instancetype)initWithAttributes:(NSDictionary *)attributes format:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3);
+- (instancetype)initWithAttributes:(nullable id)attributes format:(NSString *)format, ... NS_FORMAT_FUNCTION(2,3);
 
 /** Returns an attributed string created by using a given format string as a template into which the remaining argument values are substituted.
  @param format A format string. This value must not be nil.
@@ -61,7 +63,9 @@
  @param arguments list of arguments to substitute into format.
  @return An attributed string created by using format as a template into which the remaining argument values are substituted.
  */
-- (instancetype)initWithAttributes:(NSDictionary *)attributes format:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(2,0);
+- (instancetype)initWithAttributes:(nullable id)attributes format:(NSString *)format arguments:(va_list)arguments NS_FORMAT_FUNCTION(2,0);
 
 
 @end
+
+NS_ASSUME_NONNULL_END
